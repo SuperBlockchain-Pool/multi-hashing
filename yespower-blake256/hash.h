@@ -22,7 +22,7 @@
 
 #include <CryptoTypes.h>
 #include "generic-ops.h"
-#include "yespower.h"
+#include "yespower-blake256.h"
 
 namespace Crypto {
 

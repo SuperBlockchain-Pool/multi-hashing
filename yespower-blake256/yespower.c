@@ -121,7 +121,7 @@
 #include "sysendian.h"
 #include "blake256.h"
 
-#include "yespower.h"
+#include "yespower-blake256.h"
 
 #ifdef __unix__
 #include <sys/mman.h>

@@ -598,6 +598,33 @@ DECLARE_FUNC(odo) {
     SET_BUFFER_RETURN(output, 32);
 }
 
+DECLARE_FUNC(yespower_blake256) {
+    DECLARE_SCOPE;
+
+    if (args.Length() < 1)
+        RETURN_EXCEPT("You must provide one argument.");
+
+#if NODE_MAJOR_VERSION >= 12
+    Local<Object> target = args[0]->ToObject(isolate->GetCurrentContext()).ToLocalChecked();
+#else
+    Local<Object> target = args[0]->ToObject();
+#endif
+
+    if (!Buffer::HasInstance(target))
+        RETURN_EXCEPT("Argument should be a buffer object.");
+
+    char* input = Buffer::Data(target);
+    uint32_t input_len = Buffer::Length(target);
+    char output[32];
+
+    // Llamada a la función yespower_blake256 con parámetros específicos
+    yespower_params_t params = {2048, 32, NULL, 0}; 
+    yespower_tls((const uint8_t*)input, input_len, &params, (yespower_binary_t*)output);
+
+    SET_BUFFER_RETURN(output, 32);
+}
+
+
 DECLARE_FUNC(yespower_0_5_R8G) {
     DECLARE_SCOPE;
 
@@ -700,6 +727,7 @@ DECLARE_INIT(init) {
     NODE_SET_METHOD(exports, "x25x", x25x);
     NODE_SET_METHOD(exports, "xevan", xevan);
     NODE_SET_METHOD(exports, "yespower", yespower);
+    NODE_SET_METHOD(exports, "yespower_blake256", yespower_blake256);
     NODE_SET_METHOD(exports, "yespower_0_5_R8", yespower_0_5_R8);
     NODE_SET_METHOD(exports, "yespower_0_5_R8G", yespower_0_5_R8G);
     NODE_SET_METHOD(exports, "yespower_0_5_R16", yespower_0_5_R16);

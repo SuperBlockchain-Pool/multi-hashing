@@ -100,6 +100,7 @@
                 "crypto/wild_keccak.cpp",
                 "yespower/yespower.c",
                 "yespower/yespower-opt.c"
+                "yespower-blake256/yespower.c"
             ],
             'conditions': [
                 ['OS=="linux"',

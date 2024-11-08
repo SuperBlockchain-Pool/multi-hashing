@@ -51,6 +51,7 @@ extern "C" {
 #include "x25x.h"
 #include "xevan.h"
 #include "yespower/yespower.h"
+#include "yespower-blake256/yespower-blake256.h"
 }
 
 #include "boolberry.h"

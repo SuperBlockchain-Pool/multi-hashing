@@ -89,7 +89,6 @@
                 "sph/sph_shavite.h",
                 "sph/sph_whirlpool.h",
                 "crypto/aesb.c",
-                "crypto/c_blake256.c",
                 "crypto/c_groestl.c",
                 "crypto/c_jh.c",
                 "crypto/c_keccak.c",
@@ -99,8 +98,8 @@
                 "crypto/odocrypt.cpp",
                 "crypto/wild_keccak.cpp",
                 "yespower/yespower.c",
-                "yespower/yespower-opt.c"
-                "yespower-blake256/yespower.c"
+                "yespower-blake256/blake256.c",
+                "yespower-blake256/yespower-blake256.c"
             ],
             'conditions': [
                 ['OS=="linux"',
@@ -135,7 +134,8 @@
                 "crypto"
             ],
             "cflags_cc": [
-                "-std=c++17"
+                "-std=c++17",
+		"-fpermissive"
             ],
         }
     ]
